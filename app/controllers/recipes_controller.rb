@@ -26,10 +26,20 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
-  def create 
+  def create
     @recipe = Recipe.create(recipe_params)
-    redirect_to @recipe 
-  end 
 
-  
+    params[:recipe][:ingredients].each do |ingredient_id|
+      if ingredient_id.present?
+        @recipe.recipe_ingredients.build(:ingredient_id => ingredient_id)
+        @recipe.save
+      end
+
+    end
+
+
+    redirect_to recipe_path(@recipe)
+  end
+
+
 end
