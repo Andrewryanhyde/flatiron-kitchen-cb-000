@@ -1,6 +1,13 @@
 class IngredientsController < ApplicationController
 
-  def new 
-    @ingredient = Ingredient.new 
+  def new
+    @ingredient = Ingredient.new
   end 
+
+  def update 
+    @ingredient = Ingredient.find_by_id(params[:id])
+    @ingredient.update(ingredient_params)
+    @ingredient.save 
+    redirect_to ingredient_path(@ingredient)
+  end
 end
