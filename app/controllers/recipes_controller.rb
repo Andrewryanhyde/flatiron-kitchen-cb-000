@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
     @recipe.update(recipe_params)
     @recipe.recipe_ingredients.clear
     params[:recipe][:ingredients].each do |ingredient_id|
-      
+
       if ingredient_id.present?
         @recipe.recipe_ingredients.build(:ingredient_id => ingredient_id)
 
