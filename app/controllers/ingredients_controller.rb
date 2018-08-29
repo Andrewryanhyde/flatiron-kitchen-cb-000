@@ -21,7 +21,13 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find_by_id(params[:id])
   end
 
-  def edit 
+  def edit
     @ingredient = Ingredient.find_by_id(params[:id])
+  end
+
+  private 
+
+  def ingredient_params 
+    params.require(:ingredient).permit(:name)
   end
 end
